@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backup System</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Backup System</h1>
+        <p>Use the form below to create a backup of your data.</p>
+        
+        <form method="POST" action="{% url 'backup:create_backup' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Create Backup</button>
+        </form>
+
+        <h2>Backup History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for backup in backups %}
+                <tr>
+                    <td>{{ backup.id }}</td>
+                    <td>{{ backup.created_at }}</td>
+                    <td>
+                        <a href="{% url 'backup:restore_backup' backup.id %}">Restore</a>
+                        <a href="{% url 'backup:delete_backup' backup.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

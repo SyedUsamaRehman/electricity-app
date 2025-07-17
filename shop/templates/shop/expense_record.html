@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Expense Record - Electric Shop Management{% endblock %}
+{% block content %}
+
+<section class="max-w-3xl mx-auto bg-white rounded-lg shadow p-8 mt-8">
+    <h1 class="text-2xl font-bold mb-4">Expense Record</h1>
+    <form method="POST" action="{% url 'expense_record' %}" class="mb-8">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="description" class="block font-medium mb-1">Description:</label>
+            <input type="text" id="description" name="description" required class="w-full border rounded px-3 py-2">
+        </div>
+        <div class="mb-4">
+            <label for="amount" class="block font-medium mb-1">Amount:</label>
+            <input type="number" id="amount" name="amount" step="0.01" required class="w-full border rounded px-3 py-2">
+        </div>
+        <div class="mb-4">
+            <label for="date" class="block font-medium mb-1">Date:</label>
+            <input type="date" id="date" name="date" required class="w-full border rounded px-3 py-2">
+        </div>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Record Expense</button>
+    </form>
+
+    <h2 class="text-xl font-semibold mb-2">Recorded Expenses</h2>
+    <table class="table-auto w-full border">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="px-4 py-2 border">Description</th>
+                <th class="px-4 py-2 border">Amount</th>
+                <th class="px-4 py-2 border">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td class="px-4 py-2 border">{{ expense.description }}</td>
+                <td class="px-4 py-2 border">{{ expense.amount }}</td>
+                <td class="px-4 py-2 border">{{ expense.date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

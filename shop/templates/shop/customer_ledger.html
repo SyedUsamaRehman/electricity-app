@@ -1,0 +1,32 @@
+    {% extends 'base.html' %}
+    {% block title %}Customer Ledger{% endblock %}
+    {% block content %}
+    <div class="container mx-auto p-8">
+        <h1 class="text-2xl font-bold mb-4">Customer Ledger</h1>
+        <table class="table-auto w-full border">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="px-4 py-2 border">Customer Name</th>
+                    <th class="px-4 py-2 border">Email</th>
+                    <th class="px-4 py-2 border">Phone Number</th>
+                    <th class="px-4 py-2 border">Total Orders</th>
+                    <th class="px-4 py-2 border">Total Amount Spent</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td class="px-4 py-2 border">{{ customer.first_name }} {{ customer.last_name }}</td>
+                    <td class="px-4 py-2 border">{{ customer.email }}</td>
+                    <td class="px-4 py-2 border">{{ customer.phone_number }}</td>
+                    <td class="px-4 py-2 border">{{ customer.orders.count }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="px-4 py-2 border text-center">No customers found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}

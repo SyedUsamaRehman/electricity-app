@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Dashboard - Electric Shop Management{% endblock %}
+{% block content %}
+ 
+         <section class="mb-8">
+            <div class="bg-white rounded-lg shadow p-8 flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">Welcome, {{ user.username }}!</h2>
+                    <p class="text-gray-600">Manage your shop efficiently with quick access to all modules.</p>
+                </div>
+                <img src="{% static 'images/dashboard.svg' %}" alt="Dashboard" class="w-32 h-32 hidden md:block">
+            </div>
+        </section>
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="{% url 'product_list' %}" class="bg-blue-50 hover:bg-blue-100 rounded-lg shadow p-6 flex flex-col items-center transition">
+                <span class="text-blue-700 text-3xl mb-2"><i class="fas fa-box"></i></span>
+                <span class="font-semibold text-lg text-blue-700">Products</span>
+            </a>
+            <a href="{% url 'stock_management' %}" class="bg-green-50 hover:bg-green-100 rounded-lg shadow p-6 flex flex-col items-center transition">
+                <span class="text-green-700 text-3xl mb-2"><i class="fas fa-warehouse"></i></span>
+                <span class="font-semibold text-lg text-green-700">Stock</span>
+            </a>
+            <a href="{% url 'sales_invoice' %}" class="bg-yellow-50 hover:bg-yellow-100 rounded-lg shadow p-6 flex flex-col items-center transition">
+                <span class="text-yellow-700 text-3xl mb-2"><i class="fas fa-file-invoice-dollar"></i></span>
+                <span class="font-semibold text-lg text-yellow-700">Sales</span>
+            </a>
+            <a href="{% url 'customer_ledger' %}" class="bg-purple-50 hover:bg-purple-100 rounded-lg shadow p-6 flex flex-col items-center transition">
+                <span class="text-purple-700 text-3xl mb-2"><i class="fas fa-users"></i></span>
+                <span class="font-semibold text-lg text-purple-700">Customers</span>
+            </a>
+            <a href="{% url 'supplier_ledger' %}" class="bg-pink-50 hover:bg-pink-100 rounded-lg shadow p-6 flex flex-col items-center transition">
+                <span class="text-pink-700 text-3xl mb-2"><i class="fas fa-truck"></i></span>
+                <span class="font-semibold text-lg text-pink-700">Suppliers</span>
+            </a>
+            <a href="{% url 'expense_record' %}" class="bg-red-50 hover:bg-red-100 rounded-lg shadow p-6 flex flex-col items-center transition">
+                <span class="text-red-700 text-3xl mb-2"><i class="fas fa-money-bill-wave"></i></span>
+                <span class="font-semibold text-lg text-red-700">Expenses</span>
+            </a>
+            <a href="{% url 'profit_loss_report' %}" class="bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow p-6 flex flex-col items-center transition">
+                <span class="text-indigo-700 text-3xl mb-2"><i class="fas fa-chart-line"></i></span>
+                <span class="font-semibold text-lg text-indigo-700">Profit/Loss</span>
+            </a>
+        </section>
+    {% endblock %}

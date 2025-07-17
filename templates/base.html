@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Electric Shop Management{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-gray-100 min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-blue-700 text-white flex-shrink-0 min-h-screen shadow-lg">
+        <div class="p-6 flex flex-col items-center border-b border-blue-800">
+            <h1 class="text-2xl font-bold mb-2">Electric Shop</h1>
+            <span class="text-blue-200 text-sm">Management System</span>
+        </div>
+        <nav class="mt-8">
+            <ul class="space-y-2 px-4">
+                <li><a href="{% url 'dashboard' %}" class="flex items-center px-4 py-2 rounded hover:bg-blue-800"><i class="fas fa-tachometer-alt mr-3"></i>Dashboard</a></li>
+                <li><a href="{% url 'product_list' %}" class="flex items-center px-4 py-2 rounded hover:bg-blue-800"><i class="fas fa-box mr-3"></i>Products</a></li>
+                <li><a href="{% url 'stock_management' %}" class="flex items-center px-4 py-2 rounded hover:bg-blue-800"><i class="fas fa-warehouse mr-3"></i>Stock</a></li>
+                <li><a href="{% url 'sales_invoice' %}" class="flex items-center px-4 py-2 rounded hover:bg-blue-800"><i class="fas fa-file-invoice-dollar mr-3"></i>Sales</a></li>
+                <li><a href="{% url 'customer_ledger' %}" class="flex items-center px-4 py-2 rounded hover:bg-blue-800"><i class="fas fa-users mr-3"></i>Customers</a></li>
+                <li><a href="{% url 'supplier_ledger' %}" class="flex items-center px-4 py-2 rounded hover:bg-blue-800"><i class="fas fa-truck mr-3"></i>Suppliers</a></li>
+                <li><a href="{% url 'expense_record' %}" class="flex items-center px-4 py-2 rounded hover:bg-blue-800"><i class="fas fa-money-bill-wave mr-3"></i>Expenses</a></li>
+                <li><a href="{% url 'profit_loss_report' %}" class="flex items-center px-4 py-2 rounded hover:bg-blue-800"><i class="fas fa-chart-line mr-3"></i>Profit/Loss</a></li>
+                <li><a href="{% url 'logout' %}" class="flex items-center px-4 py-2 rounded hover:bg-blue-800"><i class="fas fa-sign-out-alt mr-3"></i>Logout</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <!-- Main Content -->
+    <main class="flex-1 px-8 py-10">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load shop_extras %}
+{% block title %}Supplier Ledger{% endblock %}
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-8 mt-8">
+    <header class="mb-6 border-b pb-4">
+        <h1 class="text-2xl font-bold text-blue-700 mb-2">Supplier Ledger</h1>
+    </header>
+    {% for order in order %}
+    <section class="mb-6">
+        <h2 class="text-lg font-semibold mb-2 text-gray-800">Customer Information</h2>
+        <div class="bg-gray-50 rounded p-4 mb-4">
+            <p><span class="font-medium">Name:</span> {{ order.customer.first_name }} {{ order.customer.last_name }}</p>
+            <p><span class="font-medium">Email:</span> {{ order.customer.email }}</p>
+            <p><span class="font-medium">Phone:</span> {{ order.customer.phone_number }}</p>
+        </div>
+        <h2 class="text-lg font-semibold mb-2 text-gray-800">Product Details</h2>
+        <table class="table-auto w-full border mb-4">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="px-4 py-2 border">Product Name</th>
+                    <th class="px-4 py-2 border">Quantity</th>
+                    <th class="px-4 py-2 border">Price</th>
+                    <th class="px-4 py-2 border">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="px-4 py-2 border">{{ order.product.name }}</td>
+                    <td class="px-4 py-2 border">{{ order.quantity }}</td>
+                    <td class="px-4 py-2 border">${{ order.product.price }}</td>
+                    <td class="px-4 py-2 border">${{ order.product.price|multiply:order.quantity }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <footer class="pt-4 border-t">
+            <h2 class="text-xl font-bold text-right text-blue-700 mb-2">Total Amount: ${{ order.product.price|multiply:order.quantity }}</h2>
+            <p class="text-center text-gray-600">Thank you for your business!</p>
+        </footer>
+    </section>
+    {% empty %}
+    <section>
+        <p class="text-center text-gray-600">No orders found.</p>
+    </section>
+    {% endfor %}
+</div>
+{% endblock %}
